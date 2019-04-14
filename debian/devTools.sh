@@ -5,3 +5,5 @@
 ./java_install.sh
 
 ./kubectl_install.sh
+
+./python_install.sh
