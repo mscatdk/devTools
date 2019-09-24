@@ -1,11 +1,11 @@
 #!/bin/bash
 # Install Docker on a debian system
-sudo apt-get update && sudo apt-get install -y apt-transport-https
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+if [ "$EUID" -ne 0 ]
+	then echo "Please run as root"
+	exit
+fi
 
-sudo apt-get update
-sudo apt-get install -y docker-ce
+./get-docker.sh
 
-sudo usermod -a -G docker `whoami`
+usermod -a -G docker `whoami`
